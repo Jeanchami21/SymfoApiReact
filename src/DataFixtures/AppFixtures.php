@@ -28,11 +28,9 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $chrono = 1;
-
         for ($u=0; $u < 10; $u++) { 
             $user = new User();
-
+            $chrono = 1;
             $hash = $this->encoder->encodePassword($user, "password");
 
             $user->setFirstName($faker->firstName())
@@ -47,8 +45,9 @@ class AppFixtures extends Fixture
                     $customer->setFirstName($faker->firstName())
                              ->setLastName($faker->lastName)
                              ->setCompany($faker->company)
-                             ->setEmail($faker->email);
-         
+                             ->setEmail($faker->email)
+                             ->setUser($user);
+
                      $manager->persist($customer);
          
                      for ($i=0; $i < mt_rand(3,10); $i++) { 
